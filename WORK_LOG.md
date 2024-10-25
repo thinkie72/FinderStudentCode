@@ -1,4 +1,4 @@
-Name: YOUR NAME HERE
+Name: Tyler Hinkie
 
 | Date    |  Time  |                                     Update |
 |:--------|:------:|-------------------------------------------:|
