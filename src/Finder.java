@@ -1,5 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.Locale;
+
 /**
  * Finder
  * A puzzle written by Zach Blick
@@ -12,7 +14,7 @@ import java.io.IOException;
 public class Finder {
 
     private static final String INVALID = "INVALID KEY";
-    private static final int BUCKETS = 1000003;
+    private static final int BUCKETS = 124999981;
     private Bucket[] table;
 
     public Finder() {
@@ -26,9 +28,14 @@ public class Finder {
         Bucket b;
         while (s != null){
             split = s.split(",");
-            b = table[keyHash(split[keyCol])];
-            b = new Bucket();
-            b.add(split[valCol]);
+            int index = keyHash(split[keyCol]);
+
+            if (table[index] == null) {
+                table[index] = new Bucket();
+            }
+
+            table[index].add(split[valCol]);
+
             s = br.readLine();
         }
         br.close();
@@ -46,7 +53,7 @@ public class Finder {
         int radix = 256;
         int m = key.length();
         for (int i = 0; i < m; i++) {
-            hash = (hash * 256 + key.charAt(i)) % BUCKETS;
+            hash = (hash * radix + key.charAt(i)) % BUCKETS;
         }
         return (int) hash;
     }
