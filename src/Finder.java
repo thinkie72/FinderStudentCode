@@ -21,7 +21,7 @@ public class Finder {
     }
 
     public void buildTable(BufferedReader br, int keyCol, int valCol) throws IOException {
-        // TODO: Complete the buildTable() function!
+
         String s = br.readLine();
         String[] split;
         while (s != null){
