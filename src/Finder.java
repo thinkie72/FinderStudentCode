@@ -15,26 +15,20 @@ public class Finder {
 
     private static final String INVALID = "INVALID KEY";
     private static final int BUCKETS = 124999981;
-    private Bucket[] table;
+    private HashMap table;
 
     public Finder() {
-        table = new Bucket[BUCKETS];
+        table = new HashMap();
     }
 
     public void buildTable(BufferedReader br, int keyCol, int valCol) throws IOException {
         // TODO: Complete the buildTable() function!
         String s = br.readLine();
         String[] split;
-        Bucket b;
         while (s != null){
             split = s.split(",");
-            int index = keyHash(split[keyCol]);
 
-            if (table[index] == null) {
-                table[index] = new Bucket();
-            }
-
-            table[index].add(split[valCol]);
+            table.put(split[keyCol], split[valCol]);
 
             s = br.readLine();
         }
