@@ -14,7 +14,6 @@ import java.util.Locale;
 public class Finder {
 
     private static final String INVALID = "INVALID KEY";
-    private static final int BUCKETS = 124999981;
     private HashMap table;
 
     public Finder() {
