@@ -1,6 +1,5 @@
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.Locale;
 
 /**
  * Finder
@@ -21,13 +20,12 @@ public class Finder {
     }
 
     public void buildTable(BufferedReader br, int keyCol, int valCol) throws IOException {
-
         String s = br.readLine();
         String[] split;
         while (s != null){
             split = s.split(",");
 
-            table.put(split[keyCol], split[valCol]);
+            table.add(split[keyCol].trim().toLowerCase(), split[valCol].trim());
 
             s = br.readLine();
         }
@@ -35,19 +33,8 @@ public class Finder {
     }
 
     public String query(String key){
-        // TODO: Complete the query() function!
-        String isNull = table[keyHash(key)].get();
-        if (isNull.isEmpty()) return INVALID;
-        return isNull;
-    }
-
-    private int keyHash(String key) {
-        long hash = 0;
-        int radix = 256;
-        int m = key.length();
-        for (int i = 0; i < m; i++) {
-            hash = (hash * radix + key.charAt(i)) % BUCKETS;
-        }
-        return (int) hash;
+        String isNull = table.get(key.toLowerCase());
+        if (isNull != null) return isNull;
+        return INVALID;
     }
 }
