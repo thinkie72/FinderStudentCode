@@ -6,7 +6,7 @@ import java.io.IOException;
  * A puzzle written by Zach Blick
  * for Adventures in Algorithms
  * At Menlo School in Atherton, CA
- *
+ * <p>
  * Completed by: Tyler Hinkie
  **/
 
@@ -19,21 +19,22 @@ public class Finder {
         table = new HashMap();
     }
 
+    // Reads in the csv files using a BufferedReader and String.split()
     public void buildTable(BufferedReader br, int keyCol, int valCol) throws IOException {
         String s = br.readLine();
         String[] split;
-        while (s != null){
+        while (s != null) {
             split = s.split(",");
-
-            table.add(split[keyCol].trim().toLowerCase(), split[valCol].trim());
-
+            // Adds elements from each row via the corresponding columns for keys and values
+            table.add(split[keyCol], split[valCol]);
             s = br.readLine();
         }
         br.close();
     }
 
-    public String query(String key){
-        String isNull = table.get(key.toLowerCase());
+    // Searches for the value to a key, and returns it if it exists
+    public String query(String key) {
+        String isNull = table.get(key);
         if (isNull != null) return isNull;
         return INVALID;
     }
